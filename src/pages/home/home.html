@@ -1,14 +1,37 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary_color">
     <ion-title>
-      Ionic Blank
+      Entregas
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="home" padding>
+    <ion-card>
+        <ion-list>
+
+        <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+      <div>
+        <ion-item-group>
+          <ion-item>   
+             <ion-icon name="cube"  item-start larg></ion-icon>
+             <h2>
+                {{ item.orden }}  {{ item.cliente }} {{ item.estado }}
+             </h2>
+             <p>
+                {{ item.direccion }} 
+             </p>
+            
+          </ion-item>
+        </ion-item-group>
+      </div>
+    </button>
+    </ion-list>
+    </ion-card>
+
 </ion-content>
