@@ -1,18 +1,47 @@
 page-login {
 
     ion-content {
-        background-color: color($colors, energy);
+        background-image: url('http://www.choice-aduanas.com.pe/wp-content/uploads/revslider/sliderdp/sydney-04_optimised_carosel-2.jpg');
         background-size: cover;
         text-align: center;
+        opacity: 0.9;
     }
 
     img{
         margin-top: 30px;
         width: 120px;
+        margin-bottom: 30px;
     }
 
+    ion-col{
+        background-color: #1a4c9e8f;
+        opacity: 1;
+    }
+
+    .ion-list{
+        margin-top:30px;
+        margin-bottom: 30px
+    }
+
+    .ion-item{
+        background:none;
+        padding:0px; 
+        border-bottom:none ;
+        border-top:none;
+        font-size: 14px;
+        margin-top:10px;
+        border-bottom:1px solid white;
+        box-shadow:none;
+    }
+
+    .ion-label{
+        color:white;
+    }
+    
     ion-input{
-        color: color($colors, primary_text_color);
+        color:white;
+        border-bottom-color:white;
+        box-shadow:none;
     }
 
     #singin{

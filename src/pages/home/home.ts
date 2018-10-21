@@ -1,43 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, LoadingController, Loading, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
+import { DetailPage } from '../detail/detail';
+import { OrderServiceProvider } from '../../providers/order-service/order-service';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit{
+export class HomePage {
 
   username = '';
   email = '';
-  items = [];
+  orders = [];
+  loading: Loading;
 
-  ngOnInit() {
-    this.items = [
-      {
-        id:'1',
-        orden:'00001',
-        cliente: 'Hans H.B',
-        direccion: 'Comas',
-        estado: 'PENDIENTE'
-      },
-      {
-        id:'2',
-        orden:'00002',
-        cliente: 'Juan C.R',
-        direccion: 'Comas',
-        estado: 'ENTREGADO'
-      }
-    ];
-  }
-  
-  constructor(private navCtrl: NavController, private auth: AuthServiceProvider) {
+  constructor(private navCtrl: NavController, private auth: AuthServiceProvider, private loadingCtrl: LoadingController, private orderService: OrderServiceProvider, private alertCtrl: AlertController) {
     let info = this.auth.getUserInfo();
+    console.log('user',info);
     this.username = info['name'];
     this.email = info['email'];
+    this.orderService.listOrder().subscribe(
+      result => {
+        this.orders = result;
+      }
+    );
+    console.info('orders', this.orders);
   }
- 
+
   public logout() {
     this.auth.logout().subscribe(succ => {
       this.navCtrl.setRoot(LoginPage)
@@ -45,7 +36,27 @@ export class HomePage implements OnInit{
   }
 
   itemSelected(evt) {
-    console.log('itemSelected',evt);
+    console.log('itemSelected', evt);
+    this.showLoading();
+    this.navCtrl.setRoot(DetailPage, {order : evt} );
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Por favor espere un momento...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
+
+  showError(text) {
+    this.loading.dismiss();
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

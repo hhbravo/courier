@@ -12,26 +12,25 @@
 </ion-header>
 
 <ion-content class="home" padding>
-    <ion-card>
-        <ion-list>
+  <ion-card>
+    <ion-list>
+      <button ion-item *ngFor="let item of orders" (click)="itemSelected(item)">
+        <div>
+          <ion-item-group>
+            <ion-item>
+              <ion-icon name="cube" item-start larg></ion-icon>
+              <h2>
+                {{ item.order }} | {{ item.client }} | {{ item.status }}
+              </h2>
+              <p>
+                {{ item.address }}
+              </p>
 
-        <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
-      <div>
-        <ion-item-group>
-          <ion-item>   
-             <ion-icon name="cube"  item-start larg></ion-icon>
-             <h2>
-                {{ item.orden }}  {{ item.cliente }} {{ item.estado }}
-             </h2>
-             <p>
-                {{ item.direccion }} 
-             </p>
-            
-          </ion-item>
-        </ion-item-group>
-      </div>
-    </button>
+            </ion-item>
+          </ion-item-group>
+        </div>
+      </button>
     </ion-list>
-    </ion-card>
+  </ion-card>
 
 </ion-content>

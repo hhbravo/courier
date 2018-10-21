@@ -1,16 +1,20 @@
+<style>
+	ion-page.PAGENAME > ion-content{
+		background-color: transparent;
+	}
+</style>
 <ion-content class="login" padding>
 	<img src="http://www.choice-aduanas.com.pe/wp-content/uploads/2018/04/ChoicelogoSEO.png" alt="logo"/>
 	<form (ngSubmit)="login()" #registerForm="ngForm">
 		<ion-row>
 			<ion-col>
-				<ion-list inset>
-
-					<ion-item>
-						<ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+				<ion-list inset class="ion-list">
+					<ion-item class="ion-item">
+						<ion-input type="text" name="email" placeholder="Usuario" [(ngModel)]="registerCredentials.email" required></ion-input>
 					</ion-item>
 
-					<ion-item>
-						<ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password"
+					<ion-item class="ion-item">
+						<ion-input type="password" name="password" placeholder="Password" [(ngModel)]="registerCredentials.password"
 						 required></ion-input>
 					</ion-item>
 

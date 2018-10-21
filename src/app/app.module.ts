@@ -12,6 +12,10 @@ import { LoginPage } from '../pages/login/login';
 import { SingupPage } from '../pages/singup/singup';
 
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { OrderServiceProvider } from '../providers/order-service/order-service';
+import { DetailPage } from '../pages/detail/detail';
+import { TabsPage } from '../tabs/tabs';
+import { HistoryPage } from '../pages/history/history';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     HomePage,
     WelcomePage,
     LoginPage,
-    SingupPage
+    SingupPage,
+    DetailPage,
+    TabsPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -31,13 +38,17 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     HomePage,
     WelcomePage,
     LoginPage,
-    SingupPage
+    SingupPage,
+    DetailPage,
+    TabsPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    OrderServiceProvider
   ]
 })
 export class AppModule {}
